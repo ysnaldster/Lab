@@ -1,3 +1,5 @@
+using LambdaPipelines.Mocks;
+
 namespace LambdaPipelines;
 
 public class Startup
@@ -12,6 +14,7 @@ public class Startup
     public void ConfigureServices(IServiceCollection services)
     {
         services.AddControllers();
+        services.AddSingleton<UserMock>();
     }
 
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -27,9 +30,6 @@ public class Startup
 
         app.UseAuthorization();
 
-        app.UseEndpoints(endpoints =>
-        {
-            endpoints.MapControllers();
-        });
+        app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
     }
 }
